@@ -27,15 +27,14 @@ genReds numRepet =  map (\red -> ( (if red >= 255 then 255 else red),0,0) ) $ ta
 
 -- coordenadas de cada retângulo
 genRectsInLine1 :: Int -> Int -> [Rect]
-genRectsInLine1 n aleat = [( (fromIntegral (m*((quot (aleat * n) (m+1)) + w)),fromIntegral (x*(w+gap) `quot` 2 )),fromIntegral w,h ) | m <- [0..fromIntegral (n-1)], x <- [0..fromIntegral (n-1)]]
+genRectsInLine1 n aleat = [((m*(w+gap), x*(w+gap)*m), w, h) | m <- [1..fromIntegral (n*n)] , x <- concat [(take n [0 ..fromIntegral aleat]), (take n [fromIntegral aleat,fromIntegral (aleat-1) .. 0])]]
   where (w,h) = (50,50)
         gap = 2
 
 
--- Gera string com atributos de estilo para uma dada cor
--- Atributo mix-blend-mode permite misturar cores
+-- Estilo definido como cores RGB.
 svgStyle :: (Int,Int,Int) -> String
-svgStyle (r,g,b) = printf "fill:rgb(%d,%d,%d)" r g b
+svgStyle (r,g,b) = printf "fill:rgb(%d,%d,%d,1.0)" r g b
 
 -- Gera strings SVG para uma dada lista de figuras e seus atributos de estilo
 -- Recebe uma função geradora de strings SVG, uma lista de círculos/retângulos e strings de estilo
@@ -53,7 +52,7 @@ main = do
         rects1 = genRectsInLine1 nrects aleatorizador
         palette1 = genReds nrects
         
-        aleatorizador = 7
-        nrects = 15
+        aleatorizador = 5
+        nrects = 10
 
         (w,h) = (1500,1500) -- width,height da imagem SVG
