@@ -25,9 +25,17 @@ genReds numRepet =  map (\red -> ( (if red >= 255 then 255 else red),0,0) ) $ ta
         firstRed = 1
 
 
+genRectsInLine2 :: Int -> Int -> [Rect]
+genRectsInLine2 n aleat = map (\(x,y) -> ((x*(25+gap),y*(25+gap)),w,h)) (zip  [1..fromIntegral (n*n)] (concat [(take n [0 ..fromIntegral aleat]), (take n [fromIntegral aleat,fromIntegral (aleat-1) .. 0])]))
+  where (w,h) = (50,50)
+        gap = 2
+
+
+
+
 -- coordenadas de cada retângulo
 genRectsInLine1 :: Int -> Int -> [Rect]
-genRectsInLine1 n aleat = [((m*(w+gap), x*(w+gap)*m), w, h) | m <- [1..fromIntegral (n*n)] , x <- concat [(take n [0 ..fromIntegral aleat]), (take n [fromIntegral aleat,fromIntegral (aleat-1) .. 0])]]
+genRectsInLine1 n aleat = [((m*(25+gap), x*(25+gap)*m), w, h) | m <- [1..fromIntegral (n*n)] , x <- concat [(take n [0 ..fromIntegral aleat]), (take n [fromIntegral aleat,fromIntegral (aleat-1) .. 0])]]
   where (w,h) = (50,50)
         gap = 2
 
@@ -49,7 +57,7 @@ main = do
   where svgstrs = svgBegin w h ++ svgfigs1 ++ svgEnd
         -- tons de vermelho
         svgfigs1 = svgElements svgRect rects1 (map svgStyle palette1)
-        rects1 = genRectsInLine1 nrects aleatorizador
+        rects1 = genRectsInLine2 nrects aleatorizador
         palette1 = genReds nrects
         
         aleatorizador = 5
