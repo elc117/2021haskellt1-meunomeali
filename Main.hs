@@ -19,27 +19,33 @@ svgEnd :: String
 svgEnd = "</svg>"
 
 -- apenas testando, mudar de cor no futuro
-genReds :: Int -> [(Int,Int,Int)]
-genReds numRepet =  map (\red -> ( (if red >= 255 then 255 else red),0,0) ) $ take (numRepet*numRepet) (iterate (newRed+) firstRed)
-  where newRed = 1
-        firstRed = 1
+genReds :: [(Int,Int,Int)]
+genReds = map (\red -> ( (if red >= 255 then 255 else red),0,0) ) $ iterate (newRed+) firstRed
+  where newRed = 10
+        firstRed = 5
 
 
-genRectsInLine2 :: Int -> Int -> [Rect]
-genRectsInLine2 n aleat = map (\(x,y) -> ((x*(35),y*(35)),w+(2*y),h+(x*5))) tuplaXeY
-  where (w,h) = (40,40)
-        yDesce = [0 ..fromIntegral aleat]
-        ySobe = [fromIntegral aleat,fromIntegral (aleat-1) .. 0]
-        xDireita = [1..fromIntegral (2*aleat+2)]
-        xEsquerda = [0 ]
-        tuplaXeY = zip xDireita (concat [yDesce, ySobe])
+genRectsInLine2 :: Int -> Int -> Int -> [Rect]
+genRectsInLine2 largDes altDes numQuad = map (\(x,y) -> ((x*(30+2*largDes'),y*(30+2*altDes')),w,h)) tuplaXeY
+  where (w,h) = (50,50)
+        largDes' = fromIntegral largDes
+        altDes' = fromIntegral altDes
+        numQuad' = fromIntegral numQuad
+        yDesce = [0 ..numQuad']
+        ySobe = [numQuad', (numQuad'-1) .. 0]
+        xDireita = [0.. (2*numQuad'+1)]
+        xEsquerda = [((2*numQuad')+1), (2*numQuad')..0]
+        yDesceSobe = concat [yDesce, ySobe]
+        ySobeDesce = concat[ySobe,yDesce]
+        yTotal = concat [yDesceSobe,ySobeDesce]
+        tuplaXeY = zip (concat[xDireita,xEsquerda]) yTotal
 
 
 -- coordenadas de cada retângulo
-genRectsInLine1 :: Int -> Int -> [Rect]
-genRectsInLine1 n aleat = [((m*(25+gap), x*(25+gap)*m), w, h) | m <- [1..fromIntegral (n*n)] , x <- concat [(take n [0 ..fromIntegral aleat]), (take n [fromIntegral aleat,fromIntegral (aleat-1) .. 0])]]
-  where (w,h) = (50,50)
-        gap = 2
+--genRectsInLine1 :: Int -> Int -> [Rect]
+--genRectsInLine1 n aleat = [((m*(25+gap), x*(25+gap)*m), w, h) | m <- [1..fromIntegral (n*n)] , x <- concat [(take n [0 ..fromIntegral aleat]), (take n [fromIntegral aleat,fromIntegral (aleat-1) .. 0])]]
+  --where (w,h) = (50,50)
+        --gap = 2
 
 
 -- Estilo definido como cores RGB.
@@ -59,10 +65,11 @@ main = do
   where svgstrs = svgBegin w h ++ svgfigs1 ++ svgEnd
         -- tons de vermelho
         svgfigs1 = svgElements svgRect rects1 (map svgStyle palette1)
-        rects1 = genRectsInLine2 nrects aleatorizador
-        palette1 = genReds nrects
-        
-        aleatorizador = 15
-        nrects = 20
+        rects1 = genRectsInLine2 larguraDesenho alturaDesenho numQuadrados
+        palette1 = genReds
 
-        (w,h) = (1500,1500) -- width,height da imagem SVG
+        numQuadrados = 10
+        larguraDesenho = 2
+        alturaDesenho = 10
+
+        (w,h) = (2000,2000) -- width,height da imagem SVG
