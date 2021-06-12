@@ -26,11 +26,13 @@ genReds numRepet =  map (\red -> ( (if red >= 255 then 255 else red),0,0) ) $ ta
 
 
 genRectsInLine2 :: Int -> Int -> [Rect]
-genRectsInLine2 n aleat = map (\(x,y) -> ((x*(25+gap),y*(25+gap)),w,h)) (zip  [1..fromIntegral (n*n)] (concat [(take n [0 ..fromIntegral aleat]), (take n [fromIntegral aleat,fromIntegral (aleat-1) .. 0])]))
-  where (w,h) = (50,50)
-        gap = 2
-
-
+genRectsInLine2 n aleat = map (\(x,y) -> ((x*(35),y*(35)),w+(2*y),h+(x*5))) tuplaXeY
+  where (w,h) = (40,40)
+        yDesce = [0 ..fromIntegral aleat]
+        ySobe = [fromIntegral aleat,fromIntegral (aleat-1) .. 0]
+        xDireita = [1..fromIntegral (2*aleat+2)]
+        xEsquerda = [0 ]
+        tuplaXeY = zip xDireita (concat [yDesce, ySobe])
 
 
 -- coordenadas de cada retângulo
@@ -60,7 +62,7 @@ main = do
         rects1 = genRectsInLine2 nrects aleatorizador
         palette1 = genReds nrects
         
-        aleatorizador = 5
-        nrects = 10
+        aleatorizador = 15
+        nrects = 20
 
         (w,h) = (1500,1500) -- width,height da imagem SVG
