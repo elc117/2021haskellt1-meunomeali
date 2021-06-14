@@ -3,13 +3,15 @@
 O que cada função importante do código faz já está comentada no próprio código,
 por esse motivo não irei repeti-las aqui.
 
---Importante--
+--Importante--  
+
 É recomendado não ler o trecho do código entre as linhas 134 e 155 pois essa é a parte
 do EsterEgg da imagem, pelo menos não leia antes de se encontrar com ELE (você saberá quem
-é quando encontrá-lo) -- byBFc3ByZWl0YWRvciBlc3BlcmEgcG9yIHZvY8Oq
+é quando encontrá-lo) -- byBFc3ByZWl0YWRvciBlc3BlcmEgcG9yIHZvY8Oq  
 Obs.: você é a professora, então pode só ignorar isso de EsterEgg, mas vai perder a graça da imagem
 
---Funcionamento--
+--Funcionamento--  
+
 A main se encontra na linha 169 e os valores que o usuário pode mudar se encontram nela, são eles:
 
 - corFundo (linha 206) = essa função serve para escolher qual cor será o fundo da imagem, você
@@ -26,28 +28,31 @@ lhe formarão;
 
 - alturaDesenho (linha 217) = define o quão alto o "V" será.
 
-(w,h) (última linha) = define o tamanho da imagem (para o EsterEgg recomenda-se tamanho mínimo de 1900 por 1600)
+- (w,h) (última linha) = define o tamanho da imagem (para o EsterEgg recomenda-se tamanho mínimo de 1900 por 1600)
 
---EsterEgg--
+--EsterEgg--  
+
 Ao ler o código é possivel encontrar algumas funções com uma sequências estranhas de caracteres como por
 exemplo: "b2kgcHJvZiA8Mw", não é algo aleatório (o que será que significam ?).
 Se você quiser ver o potêncial máximo da imagem, precisa encontrar ELE primeiro. Você só irá encontrá-lo
-se colocar valores especificos em "numQuadrados", "larguraDesenho" e "alturaDesenho", são eles:
-numQuadrados = ( 4 vezes a metade de alturaDesenho )
-larguraDesenho = ( (alturaDesenho + numQuadrados - (2*alturaDesenho)) / 2 )
-alturaDesenho = 10
-Obs.: se quiser pode só pular para respostas no próximo tópico (sei que tem vários trabalhos para corrigir)
+se colocar valores especificos em "numQuadrados", "larguraDesenho" e "alturaDesenho", são eles:  
+numQuadrados = ( 4 vezes a metade de alturaDesenho )  
+larguraDesenho = ( (alturaDesenho + numQuadrados - (2*alturaDesenho)) / 2 )  
+alturaDesenho = 10  
+Obs.: se quiser pode só pular para respostas no próximo tópico (sei que tem vários trabalhos para corrigir)  
+  
+  
+  
+  
+--Respostas--  
 
-
-
---Respostas--
 (Espero que tenha tentado resolver(e conseguido), mas entendo se não quis)
 Para que ELE apareça na imagem, basta definir os valores de "numQuadrados", "larguraDesenho" e "alturaDesenho"
-dessa forma:
-numQuadrados = 20
-larguraDesenho = 5
-alturaDesenho = 10
+dessa forma:  
+numQuadrados = 20  
+larguraDesenho = 5  
+alturaDesenho = 10  
 É apenas um olho, nada de mais (mas demorou pra fazer hein), só fiz para ter algum diferencial no trabalho ao
-invés de apenas escolher cores e tamanhos.
+invés de apenas escolher cores e tamanhos.  
 Os códigos estranhos estão codificados em "Base64", mas não tem nada de mais escrito, por exemplo o "b2kgcHJvZiA8Mw"
 dizia "oi prof <3"
