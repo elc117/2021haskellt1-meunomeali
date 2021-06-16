@@ -33,7 +33,7 @@ lhe formarão;
 --EsterEgg--  
 
 Ao ler o código é possivel encontrar algumas funções com uma sequências estranhas de caracteres como por
-exemplo: "b2kgcHJvZiA8Mw", não é algo aleatório (o que será que significam ?).
+exemplo: "b2kgcHJvZiA8Mw", não é algo aleatório (o que será que significam ?).  
 Se você quiser ver o potêncial máximo da imagem, precisa encontrar ELE primeiro. Você só irá encontrá-lo
 se colocar valores especificos em "numQuadrados", "larguraDesenho" e "alturaDesenho", são eles:  
 numQuadrados = ( 4 vezes a metade de alturaDesenho )  
